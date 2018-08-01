@@ -84,13 +84,13 @@ app.use(async (req, res) => {
         if (!requestBody.url) {
             return res.send('Please provide valid URL in post parameter');
         } else {
-            await page.goto(requestBody.url, {waitUntil: 'networkidle2'});
+            await page.goto(requestBody.url, {waitUntil: ['networkidle0', 'load', 'domcontentloaded']});
         }
     } else if (requestBody.type === 'html') {
         if (!requestBody.content) {
             return res.send('Please provide valid html content in post parameter');
         } else {
-            await page.goto(`data:text/html,${requestBody.content}`, { waitUntil: 'networkidle0' });
+            await page.goto(`data:text/html,${requestBody.content}`, { waitUntil: ['networkidle0', 'load', 'domcontentloaded'] });
         }
     } else {
         return res.send('type is not a valid parameter');
