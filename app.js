@@ -90,7 +90,7 @@ app.use(async (req, res) => {
         if (!requestBody.content) {
             return res.send('Please provide valid html content in post parameter');
         } else {
-            await page.goto(`data:text/html,${requestBody.content}`, { waitUntil: ['networkidle0', 'load', 'domcontentloaded'] });
+            await page.goto(`data:text/html, <html content> <meta charset="utf-8">${requestBody.content}`, { waitUntil: ['networkidle0', 'load', 'domcontentloaded'] });
         }
     } else {
         return res.send('type is not a valid parameter');
@@ -143,7 +143,7 @@ app.use(async (req, res) => {
 
     const pdfBuffer = await page.pdf(pdfOptions);
     browser.close();
-
+    console.log(pdfBuffer);
     res.set('Content-Type', 'application/pdf');
     res.send(pdfBuffer);
 });
