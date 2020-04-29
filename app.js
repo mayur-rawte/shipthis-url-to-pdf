@@ -84,7 +84,8 @@ app.use(async (req, res) => {
         if (!requestBody.url) {
             return res.send('Please provide valid URL in post parameter');
         } else {
-            await page.goto(requestBody.url, {waitUntil: ['networkidle0', 'load', 'domcontentloaded']});
+            await page.goto(requestBody.url, {waitUntil: ['networkidle0', 'load', 'domcontentloaded','networkidle2']});
+            await page.waitFor(1000);
         }
     } else if (requestBody.type === 'html') {
         if (!requestBody.content) {
