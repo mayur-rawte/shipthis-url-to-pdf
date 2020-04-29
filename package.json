@@ -1,7 +1,7 @@
 {
   "name": "shipthis-url-to-pdf",
   "engines": {
-    "node": "8.x"
+    "node": "12.x"
   },
   "version": "1.0.0",
   "description": "Shipthis url to pdf in Node.js on Google App Engine.",
